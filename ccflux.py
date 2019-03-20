@@ -1,11 +1,15 @@
 import json
+import os
+from pathlib import Path
 
 import influxdb
 import serial
 import untangle
 
 
-with open('config.json', 'r') as fh:
+config_file_path = Path(os.path.realpath(__file__)) / 'config.json'
+
+with open(config_file_path, 'r') as fh:
     config = json.load(fh)
 
 
