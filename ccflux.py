@@ -22,8 +22,8 @@ def parse_data(data):
     try:
         parsed = untangle.parse(data)
         return {
-            'temperature': parsed.msg.tmpr.cdata,
-            'watts': parsed.msg.ch1.watts.cdata
+            'temperature': float(parsed.msg.tmpr.cdata),
+            'watts': float(parsed.msg.ch1.watts.cdata)
         }
     except AttributeError:
         return None
