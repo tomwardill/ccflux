@@ -19,11 +19,14 @@ def get_data(port):
 
 
 def parse_data(data):
-    parsed = untangle.parse(data)
-    return {
-        'temperature': parsed.msg.tmpr.cdata,
-        'watts': parsed.msg.ch1.watts.cdata
-    }
+    try:
+        parsed = untangle.parse(data)
+        return {
+            'temperature': parsed.msg.tmpr.cdata,
+            'watts': parsed.msg.ch1.watts.cdata
+        }
+    except AttributeError:
+        return None
 
 
 def post_values(power):
@@ -42,4 +45,5 @@ if __name__ == "__main__":
     while True:
         data = get_data(ser)
         power = parse_data(data)
-        post_values(power)
+        if power:
+            post_values(power)
