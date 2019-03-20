@@ -15,7 +15,7 @@ with open(config_file_path, 'r') as fh:
 
 def get_data(port):
     xmldata = port.readline()
-    return xmldata
+    return xmldata.decode()
 
 
 def parse_data(data):
