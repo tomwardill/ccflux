@@ -7,7 +7,7 @@ import serial
 import untangle
 
 
-config_file_path = Path(os.path.realpath(__file__)) / 'config.json'
+config_file_path = Path(os.path.realpath(__file__)).parent / 'config.json'
 
 with open(config_file_path, 'r') as fh:
     config = json.load(fh)
