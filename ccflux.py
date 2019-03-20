@@ -10,8 +10,7 @@ with open('config.json', 'r') as fh:
 
 
 def get_data(port):
-    ser = serial.Serial(port, 57600)
-    xmldata = ser.readline()
+    xmldata = port.readline()
     return xmldata
 
 
@@ -35,6 +34,8 @@ def post_values(power):
 
 
 if __name__ == "__main__":
-    data = get_data()
-    power = parse_data(data)
-    post_values(power)
+    ser = serial.Serial(config['port'], 57600)
+    while True:
+        data = get_data(ser)
+        power = parse_data(data)
+        post_values(power)
