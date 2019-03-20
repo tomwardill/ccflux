@@ -25,7 +25,7 @@ def parse_data(data):
             'temperature': float(parsed.msg.tmpr.cdata),
             'watts': float(parsed.msg.ch1.watts.cdata)
         }
-    except AttributeError:
+    except Exception:
         return None
 
 
